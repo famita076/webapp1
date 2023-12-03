@@ -32,15 +32,15 @@ if page == "Edit Data":
         email_lama = result["email"]
         handphone_lama = result["handphone"]
         sosmed_lama = result["sosmed"]
-        nama_instansi_lama = result["email"]
-        jabatan_lama = result["handphone"]
-        alamat_instansi_lama = result["sosmed"]
+        nama_instansi_lama = result["nama_instansi"]
+        jabatan_lama = result["jabatan"]
+        alamat_instansi_lama = result["alamat_instansi"]
 
         with st.expander(f'a.n. {nama_mahasiswa_lama}'):
             with st.form(f'data-{id}'):
                 nama_mahasiswa_baru = st.text_input("nama_mahasiswa", nama_mahasiswa_lama)
                 nrp_mahasiswa_baru = st.text_input("nrp_mahasiswa", nrp_mahasiswa_lama)
-                jenis_kelamin_baru = st.selectbox("jenis_kelamin", list_jenis_kelamin, list_jenis_kelamin(jenis_kelamin_lama))
+                jenis_kelamin_baru = st.selectbox("jenis_kelamin", list_jenis_kelamin, list_jenis_kelamin.index(jenis_kelamin_lama))
                 angkatan_baru = st.text_input("angkatan", angkatan_lama)
                 alamat_domisili_baru = st.text_input("alamat_domisili", alamat_domisili_lama)
                 email_baru = st.text_input("email", email_lama)
@@ -58,7 +58,7 @@ if page == "Edit Data":
                             query = text('UPDATE sebaran_alumni\
                                           SET nama_mahasiswa=:1, nrp_mahasiswa=:2, jenis_kelamin=:3, angkatan=:4, \
                                           alamat_domisili=:5, email=:6, handphone=:7, sosmed=:8 , nama_instansi=:9,  jabatan=:10, alamat_instansi=:11 \
-                                          WHERE id=:9;')
+                                          WHERE id=:12;')
                             session.execute(query, {'1':nama_mahasiswa_baru, '2':nrp_mahasiswa_baru, '3':jenis_kelamin_baru, '4':angkatan_baru, 
                                                     '5':alamat_domisili_baru, '6':email_baru, '7':handphone_baru, '8':sosmed_baru, '9':nama_instansi_baru, '10': jabatan_baru, '11':alamat_instansi_baru, '12':id})
                             session.commit()
