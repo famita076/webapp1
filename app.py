@@ -54,7 +54,7 @@ if page == "Edit Data":
                 jabatan_baru = st.text_input("jabatan", jabatan_lama)
                 alamat_instansi_baru = st.text_input("alamat_instansi", alamat_instansi_lama)
 
-                col1, col2 = st.columns([1, 6)
+                col1, col2 = st.columns([1, 6])
 
                 with col1:
                     if st.form_submit_button('UPDATE'):
