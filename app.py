@@ -3,7 +3,7 @@ from sqlalchemy import text
 
 list_jenis_kelamin = ['', 'Perempuan', 'Laki-laki']
 
-conn = st.database("postgresql://famitawibi20:y2abk9QcReHn@ep-patient-field-58242561.us-east-2.aws.neon.tech/web")
+conn_str = st.database("postgresql://famitawibi20:y2abk9QcReHn@ep-patient-field-58242561.us-east-2.aws.neon.tech/web")
 
 query_create_table = text('CREATE TABLE IF NOT EXISTS sebaran_pekerjaan(id serial, nama_mahasiswa text, nrp_mahasiswa text, jenis_kelamin text, angkatan text, alamat_domisili text,\
                                                    email text, handphone text, sosmed text, nama_instansi text, jabatan text, alamat_instansi text);')
