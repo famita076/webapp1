@@ -5,10 +5,6 @@ list_jenis_kelamin = ['', 'Perempuan', 'Laki-laki']
 
 conn = st.connection("postgresql", type="sql", 
                      url="postgresql://famitawibi20:y2abk9QcReHn@ep-patient-field-58242561.us-east-2.aws.neon.tech/web")
-with conn.session as session:
-    query = text('CREATE TABLE IF NOT EXISTS sebaran_pekerjaan(id serial, nama_mahasiswa text, nrp_mahasiswa text, jenis_kelamin text, angkatan text, alamat_domisili text\
-                                                       email text, handphone text, sosmed text, nama_instansi text, jabatan text, alamat_instansi text);')
-    session.execute(query)
 
 st.header('DATABASE SEBARAN ALUMNI MAHASISWA STATISTIKA BISNIS')
 page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data"])
