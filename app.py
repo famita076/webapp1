@@ -1,29 +1,27 @@
 import streamlit as st
 from sqlalchemy import text
 
-list_jenis_kelamin = ['', 'Perempuan', 'Laki-laki'] 
+list_jenis_kelamin = ['', 'Perempuan', 'Laki-laki']
 
-conn = st.connection("postgresql", type="sql", 
-                     url="postgresql://famitawibi20:y2abk9QcReHn@ep-patient-field-58242561.us-east-2.aws.neon.tech/web")
-with conn.session as session:
-    query = text('CREATE TABLE IF NOT EXISTS sebaran_pekerjaan(id serial, nama_mahasiswa text, nrp_mahasiswa text, jenis_kelamin text, angkatan text, alamat_domisili text\
-                                                       email text, handphone text, sosmed text, nama_instansi text, jabatan text, alamat_instansi text);')
-    session.execute(query)
+conn = st.database("postgresql://famitawibi20:y2abk9QcReHn@ep-patient-field-58242561.us-east-2.aws.neon.tech/web")
+
+query_create_table = text('CREATE TABLE IF NOT EXISTS sebaran_pekerjaan(id serial, nama_mahasiswa text, nrp_mahasiswa text, jenis_kelamin text, angkatan text, alamat_domisili text,\
+                                                   email text, handphone text, sosmed text, nama_instansi text, jabatan text, alamat_instansi text);')
+conn.execute(query_create_table)
 
 st.header('DATABASE SEBARAN ALUMNI MAHASISWA STATISTIKA BISNIS')
-page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data"])
+page = st.sidebar.selectbox("Pilih Menu", ["View Data", "Edit Data"])
 
 if page == "View Data":
-    data = conn.query('SELECT * FROM sebaran_pekerjaan ORDER By id;', ttl="0").set_index('id')
+    data = conn.query('SELECT * FROM sebaran_pekerjaan ORDER BY id;').set_index('id')
     st.dataframe(data)
 
 if page == "Edit Data":
     if st.button('Tambah Data'):
-        with conn.session as session:
-            query = text('INSERT INTO sebaran_data (nama_mahasiswa, nrp_mahasiswa, jenis_kelamin, angkatan, alamat_domisili, email, handphone, sosmed, nama_instansi, jabatan, alamat_instansi)\
-                          VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11);')
-            session.execute(query, {'1':'', '2':'', '3':'', '4':'', '5':'', '6':'', '7':'', '8':'', '9':'', '10':'', '11:''})
-            session.commit()
+        query_insert = text('INSERT INTO sebaran_pekerjaan (nama_mahasiswa, nrp_mahasiswa, jenis_kelamin, angkatan, alamat_domisili, email, handphone, sosmed, nama_instansi, jabatan, alamat_instansi)\
+                      VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11);')
+        conn.execute(query_insert, {'1': '', '2': '', '3': '', '4': '', '5': '', '6': '', '7': '', '8': ' ', '9': '', '10': ' ', '11': ''})
+
 
     data = conn.query('SELECT * FROM sebaran_alumni ORDER By id;', ttl="0")
     for _, result in data.iterrows():        
@@ -74,3 +72,5 @@ if page == "Edit Data":
                         session.execute(query, {'1':id})
                         session.commit()
                         st.experimental_rerun()
+
+       
