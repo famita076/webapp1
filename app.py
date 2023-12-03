@@ -40,8 +40,8 @@ if page == "Edit Data":
             with st.form(f'data-{id}'):
                 nama_mahasiswa_baru = st.text_input("nama_mahasiswa", list_nama_mahasiswa, list_nama_mahasiswa(nama_mahasiswa_lama))
                 nrp_mahasiswa_baru = st.text_input("nrp_mahasiswa", nrp_mahasiswa_lama)
-                jenis_kelamin_baru = st.selectbox("jenis_kelamin", list_jenis_kelamin, list_jenis_kelamin.index(jenis_kelamin_lama))
-                angkatan_baru = st.selectbox("angkatan", list_angkatan(angkatan_lama))
+                jenis_kelamin_baru = st.selectbox("jenis_kelamin", list_jenis_kelamin, list_jenis_kelamin(jenis_kelamin_lama))
+                angkatan_baru = st.text_input("angkatan", angkatan_lama)
                 alamat_domisili_baru = st.text_input("alamat_domisili", alamat_domisili_lama)
                 email_baru = st.text_input("email", email_lama)
                 handphone_baru = st.text_input("handphone", handphone_lama)
