@@ -17,8 +17,8 @@ if page == "Edit Data":
     if st.button('Tambah Data'):
         with conn.session as session:
             query = text('INSERT INTO sebaran_pekerjaan (nama_mahasiswa, nrp_mahasiswa, jenis_kelamin, angkatan, alamat_domisili, email, handphone, sosmed, nama_instansi, jabatan, alamat_instansi)\
-                          VALUES (:1, :2, :3, :4, :5);')
-            session.execute(query, {'1': '', '2': '', '3': '', '4': '', '5': ''})
+                          VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11);')
+            session.execute(query, {'1': '', '2': '', '3': '', '4': '', '5': '', '6': '', '7': '', '8': ' ', '9': '', '10': ' ', '11': ''})
             session.commit()
 
     data = conn.query('SELECT * FROM sebaran_pekerjaan ORDER By id;', ttl="0")
