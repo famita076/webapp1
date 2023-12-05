@@ -13,13 +13,20 @@ if page == "View Data":
     data = conn.query('SELECT * FROM sebaran_pekerjaan ORDER By id;', ttl="0").set_index('id')
     st.dataframe(data)
 
+if page == "Statistik Alumni":
     st.header('Statistik Alumni')
     total_alumni = len(data)
     st.write(f'Total Alumni: {total_alumni}')
 
+if page == "Statistik Jenis Kelamin":
     st.header('Statistik Jenis Kelamin')
     jenis_kelamin_count = data['jenis_kelamin'].value_counts()
     st.bar_chart(jenis_kelamin_count)
+
+if page == "Sebaran Angkatan Alumni":
+    st.header('Sebaran Angkatan Alumni')
+    angkatan_count = data['angkatan'].value_counts()
+    st.bar_chart(angkatan_count)
 
 if page == "Edit Data":
     if st.button('Tambah Data'):
