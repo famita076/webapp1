@@ -19,14 +19,14 @@ if page == "Statistik Alumni":
     st.write(f'Total Alumni: {total_alumni}')
 
 if page == "Statistik Jenis Kelamin":
-    st.header('Statistik Jenis Kelamin')
-    jenis_kelamin_count = data['jenis_kelamin'].value_counts()
-    st.bar_chart(jenis_kelamin_count)
+    st.subheader("Statistik Jenis Kelamin")
+    data = conn.query('SELECT jenis_kelamin, COUNT(*) as count FROM sebaran_pekerjaan GROUP BY jenis_kelamin;')
+    st.bar_chart(data.set_index('jenis_kelamin'))
 
 if page == "Sebaran Angkatan Alumni":
-    st.header('Sebaran Angkatan Alumni')
-    angkatan_count = data['angkatan'].value_counts()
-    st.bar_chart(angkatan_count)
+    st.subheader("Sebaran Angkatan Alumni")
+    data = conn.query('SELECT angkatan, COUNT(*) as count FROM sebaran_pekerjaan GROUP BY angkatan;')
+    st.bar_chart(data.set_index('angkatan'))
 
 if page == "Edit Data":
     if st.button('Tambah Data'):
