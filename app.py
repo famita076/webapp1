@@ -13,7 +13,7 @@ if page == "View Data":
     data = conn.query('SELECT * FROM sebaran_pekerjaan ORDER By id;', ttl="0").set_index('id')
     st.dataframe(data)
 
-      st.header('Statistik Alumni')
+    st.header('Statistik Alumni')
     total_alumni = len(data)
     st.write(f'Total Alumni: {total_alumni}')
 
