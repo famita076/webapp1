@@ -14,7 +14,8 @@ if page == "View Data":
     st.dataframe(data)
 
 if page == "Statistik Alumni":
-    st.header('Statistik Alumni')
+    st.subheader('Statistik Alumni')
+    data = conn.query ('SELECT nama_mahasiswa, COUNT(*) as count FROM nama_mahasiswa;')
     total_alumni = len(data)
     st.write(f'Total Alumni: {total_alumni}')
 
