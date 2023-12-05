@@ -15,7 +15,7 @@ if page == "View Data":
 
 if page == "Statistik Alumni":
     st.subheader('Statistik Alumni')
-    total_alumni = len(data)
+    total_alumni = len(conn.query('SELECT * FROM sebaran_pekerjaan;', ttl="0"))
     st.write(f'Total Alumni: {total_alumni}')
 
 if page == "Statistik Jenis Kelamin":
