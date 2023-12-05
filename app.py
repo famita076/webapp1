@@ -7,7 +7,7 @@ conn = st.connection("postgresql", type="sql",
                      url="postgresql://famitawibi20:y2abk9QcReHn@ep-patient-field-58242561.us-east-2.aws.neon.tech/web?options=endpoint%3Dep-patient-field-58242561")
 
 st.header('DATABASE SEBARAN ALUMNI MAHASISWA STATISTIKA BISNIS')
-page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data","Statistik Alumni","Statistik Jenis Kelamin"])
+page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data","Statistik Alumni","Statistik Jenis Kelamin", "Sebaran Angkatan Alumni"])
 
 if page == "View Data":
     data = conn.query('SELECT * FROM sebaran_pekerjaan ORDER By id;', ttl="0").set_index('id')
@@ -15,7 +15,6 @@ if page == "View Data":
 
 if page == "Statistik Alumni":
     st.subheader('Statistik Alumni')
-    data = conn.query ('SELECT nama_mahasiswa, COUNT(nama_mahasiswa) as count FROM sebaran_pekerjaan;')
     total_alumni = len(data)
     st.write(f'Total Alumni: {total_alumni}')
 
