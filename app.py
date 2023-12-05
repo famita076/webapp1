@@ -13,6 +13,14 @@ if page == "View Data":
     data = conn.query('SELECT * FROM sebaran_pekerjaan ORDER By id;', ttl="0").set_index('id')
     st.dataframe(data)
 
+      st.header('Statistik Alumni')
+    total_alumni = len(data)
+    st.write(f'Total Alumni: {total_alumni}')
+
+    st.header('Statistik Jenis Kelamin')
+    jenis_kelamin_count = data['jenis_kelamin'].value_counts()
+    st.bar_chart(jenis_kelamin_count)
+
 if page == "Edit Data":
     if st.button('Tambah Data'):
         with conn.session as session:
