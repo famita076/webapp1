@@ -7,7 +7,7 @@ conn = st.connection("postgresql", type="sql",
                      url="postgresql://famitawibi20:y2abk9QcReHn@ep-patient-field-58242561.us-east-2.aws.neon.tech/web?options=endpoint%3Dep-patient-field-58242561")
 
 st.header('DATABASE SEBARAN ALUMNI MAHASISWA STATISTIKA BISNIS')
-page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data","Statistik Alumni","Statistik Jenis Kelamin", "Sebaran Angkatan Alumni"])
+page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data","Statistik Alumni","Statistik Jenis Kelamin"])
 
 if page == "View Data":
     data = conn.query('SELECT * FROM sebaran_pekerjaan ORDER By id;', ttl="0").set_index('id')
@@ -21,7 +21,7 @@ if page == "Statistik Alumni":
     st.subheader("Sebaran Angkatan Alumni")
     data = conn.query('SELECT angkatan, COUNT(*) as count FROM sebaran_pekerjaan GROUP BY angkatan;')
     st.bar_chart(data.set_index('angkatan'))
-    colors = ['#FF5733', '#33FF57', '#5733FF', '#FF5733']
+    st.bar_chart(data['Value'], color='#FF5733')
 
 if page == "Statistik Jenis Kelamin":
     st.subheader("Statistik Jenis Kelamin")
