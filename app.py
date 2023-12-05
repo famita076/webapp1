@@ -20,7 +20,7 @@ if page == "Statistik Alumni":
 
     st.subheader("Sebaran Angkatan Alumni")
     data = conn.query('SELECT angkatan, COUNT(*) as count FROM sebaran_pekerjaan GROUP BY angkatan;')
-    st.bar_chart(data.set_index('angkatan'), color="#ffaa00")
+    st.bar_chart(data.set_index('angkatan'), color="#45FFCA")
 
 if page == "Statistik Jenis Kelamin":
     st.subheader("Statistik Jenis Kelamin")
