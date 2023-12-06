@@ -1,11 +1,11 @@
 import streamlit as st
 from sqlalchemy import text
 
-primaryColor="#8ECDDD"
-backgroundColor="#FFCC70"
-secondaryBackgroundColor="#22668D"
-textColor="#FFFADD"
-font="comic sans"
+st.primaryColor="#8ECDDD"
+st.backgroundColor="#FFCC70"
+st.secondaryBackgroundColor="#22668D"
+st.textColor="#FFFADD"
+st.font="comic sans"
 
 list_jenis_kelamin = ['', 'Perempuan', 'Laki-laki'] 
 
