@@ -25,9 +25,7 @@ if page == "Statistik Alumni":
 if page == "Statistik Jenis Kelamin":
     st.subheader("Statistik Jenis Kelamin")
     data = conn.query('SELECT jenis_kelamin, COUNT(*) as count FROM sebaran_pekerjaan GROUP BY jenis_kelamin;', ttl="0")
-    data['jenis_kelamin'] = data['jenis_kelamin'].apply(lambda x: 'Laki-laki 👨' if x == 'Laki-laki' else 'Perempuan 👩')
-    rotated_data = data.copy()
-    rotated_data['jenis_kelamin'] = rotated_data['jenis_kelamin'].apply(lambda x: x[::-1])
+    data['jenis_kelamin'] = data['jenis_kelamin'].apply(lambda x: 'Laki-laki 👨' if x == 'Laki-laki' else 'Perempuan👩')
     st.bar_chart(data.set_index('jenis_kelamin'), color="#FB2576")
 
 if page == "Edit Data":
