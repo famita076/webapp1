@@ -1,6 +1,12 @@
 import streamlit as st
 from sqlalchemy import text
 
+primaryColor="#8ECDDD"
+backgroundColor="#FFCC70"
+secondaryBackgroundColor="#22668D"
+textColor="#FFFADD"
+font="comic sans"
+
 list_jenis_kelamin = ['', 'Perempuan', 'Laki-laki'] 
 
 conn = st.connection("postgresql", type="sql", 
