@@ -12,21 +12,11 @@ page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data","Statistik Al
 if page == "View Data":
     data = conn.query('SELECT * FROM sebaran_pekerjaan ORDER By id;', ttl="0").set_index('id')
     st.dataframe(data)
-    st.primaryColor="#8ECDDD"
-    st.backgroundColor="#FFCC70"
-    st.secondaryBackgroundColor="#22668D"
-    st.textColor="#FFFADD"
-    st.font="comic sans"
 
 if page == "Statistik Alumni":
     st.subheader('Statistik Alumni')
     total_alumni = len(conn.query('SELECT * FROM sebaran_pekerjaan;', ttl="0"))
     st.write(f'Total Alumni: {total_alumni}')
-    st.primaryColor="#8ECDDD"
-    st.backgroundColor="#FFCC70"
-    st.secondaryBackgroundColor="#22668D"
-    st.textColor="#FFFADD"
-    st.font="comic sans"
 
     st.subheader("Sebaran Angkatan Alumni")
     data = conn.query('SELECT angkatan, COUNT(*) as count FROM sebaran_pekerjaan GROUP BY angkatan;', ttl="0")
@@ -35,6 +25,7 @@ if page == "Statistik Alumni":
 if page == "Statistik Jenis Kelamin":
     st.subheader("Statistik Jenis Kelamin")
     data = conn.query('SELECT jenis_kelamin, COUNT(*) as count FROM sebaran_pekerjaan GROUP BY jenis_kelamin;', ttl="0")
+    data['jenis_kelamin'] = data['jenis_kelamin'].apply(lambda x: '👨' if x == 'Laki-laki' else '👩')
     st.bar_chart(data.set_index('jenis_kelamin'), color="#FB2576")
 
 if page == "Edit Data":
