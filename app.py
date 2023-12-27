@@ -12,7 +12,7 @@ page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data","Statistik Al
 if page == "View Data":
     data = conn.query('SELECT * FROM sebaran_pekerjaan ORDER By id;', ttl="0").set_index('id')
     st.dataframe(data)
-
+    
 if page == "Statistik Alumni":
     st.subheader('Statistik Alumni')
     total_alumni = len(conn.query('SELECT * FROM sebaran_pekerjaan;', ttl="0"))
